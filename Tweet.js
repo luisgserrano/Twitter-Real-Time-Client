@@ -21,10 +21,10 @@ const schema = new mongoose.Schema({
 // Static getTweets method to return tweets data from the DB
 schema.statics.getTweets = (page, skip, callback) => {
     
-    const tweets = [],
+    let tweets = [],
           start  = (page * 20) + (skip * 1);
           
-    Tweet.find({}, 'tw_id active username fullname avatar message data', { skip: start, limit: 20 }).sort({ date: 'desc' }).exec((err, data) => {
+    Tweet.find({}, 'tw_id active username fullname avatar message date', { skip: start, limit: 20 }).sort({ date: 'desc' }).exec((err, data) => {
         
         // if everything right
         if (!err) {
