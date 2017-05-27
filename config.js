@@ -7,4 +7,6 @@ config.twitter = {
     access_token_secret: "7vjzjNdKHPClzSpusFwUMAczv1haArbzRiT7A6PnDWc3O"
 };
 
+config.mongolab = 'mongodb://luisgserrano:nada,de.nada1993@ds151631.mlab.com:51631/hole19-twitter';
+
 module.exports = config;
