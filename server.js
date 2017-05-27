@@ -4,12 +4,13 @@ const express    = require('express'),
       mongoose   = require('mongoose'),
       io         = require('socket.io'),
       Twit       = require('twit'),
-      config     = require('./config')
+      config     = require('./config'),
+	  routes 	 = require('./routes'),
 	  streamHandler = require('./streamHandler');
 
 // Create an express instance and set a port variable
 const app  = express(),
-      port = process.env.PORT || 8080;
+      port = process.env.PORT || 3005;
 
 // Connect to the mongo database
 mongoose.connect(config.mongolab);
@@ -19,6 +20,13 @@ const server = http.createServer(app).listen(port, () => {
       console.log('Express server listening on port' + port);
 });
 
+// Index route
+app.get('/getTweets', routes.index);
+
+// Page route
+app.get('/page/:page/:skip', routes.page);
+
+
 // Set socket.io to listen on server
 io.listen(server);
 
@@ -27,10 +35,10 @@ const T = new Twit(config.twitter);
 
 // Creating a request variable and using stream function from Twit
 // The hashtags we'r listening are #golf and/or #hole19golf
-const request = T.stream('statuses/filter', { track: '#hole19golf, #golf' })
+const request = T.stream('statuses/filter', { track: '#hole19golf, #golf', filter_level: 'medium' });
 
 // Set a stream listener for tweets matching tacking keywords
 request.on('tweet', tweet => {
-      streamHandler(tweet, io);
+      streamHandler(tweet, io)
       console.log(tweet)
 });
