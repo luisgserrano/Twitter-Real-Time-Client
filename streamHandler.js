@@ -1,16 +1,18 @@
 const Tweet = require('./Tweet');
+const moment = require('moment');
 
 module.exports = (data, io) => {
-
+    
     // New tweet object
     const tweet = {
-        tw_id:    data['id'],
-        active:   false,
-        username: data['user']['screen_name'],
-        fullname: data['user']['name'],
-        avatar:   data['user']['profile_image_url'],
-        message:  data['text'],
-        date:     data['user']['created_at']
+        tw_id:     data['id_str'],
+        active:    false,
+        username:  data['user']['screen_name'],
+        fullname:  data['user']['name'],
+        avatar:    data['user']['profile_image_url'],
+        message:   data['text'],
+        media_url: checkTweetMedia(data['entities']['media']),
+        date:      new Date(Date.parse(data['created_at']))
     };
 
     // Creating a new model instance with the new tweet
@@ -19,8 +21,18 @@ module.exports = (data, io) => {
     // Saving in the database
     tweetEntry.save(function (err) {
         if (!err) {
-            // io.emit('tweet', tweet);
+            io.emit('tweet', tweet);
         }
     });
+
+    function checkTweetMedia(media) {
+
+        if (typeof media !== 'undefined') {            
+            return media[0]['media_url'];
+        } else {
+            return '';
+        }
+
+    }
 
 };
