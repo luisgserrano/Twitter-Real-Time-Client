@@ -1,30 +1,24 @@
 const mongoose = require('mongoose');
 
-// profile image
-// fullname
-// username
-// time ?
-// body message
-// footer with links to retweet, like ?
-
 // The schema for our tweet data
 const schema = new mongoose.Schema({
-    tw_id: String,
-    active: Boolean,
-    username: String,
-    fullname: String,
-    avatar: String,
-    message: String,
-    date: Date
+    tw_id:     String,
+    active:    Boolean,
+    username:  String,
+    fullname:  String,
+    avatar:    String,
+    message:   String,
+    media_url: String,
+    date:      Date
 });
 
 // Static getTweets method to return tweets data from the DB
 schema.statics.getTweets = (page, skip, callback) => {
     
-    let tweets = [],
-          start  = (page * 20) + (skip * 1);
+    let tweets  = [],
+          start = (page * 20) + (skip * 1);
           
-    Tweet.find({}, 'tw_id active username fullname avatar message date', { skip: start, limit: 20 }).sort({ date: 'desc' }).exec((err, data) => {
+    Tweet.find({}, 'tw_id active username fullname avatar message media_url date', { skip: start, limit: 20 }).sort({ date: 'desc' }).exec((err, data) => {
         
         // if everything right
         if (!err) {
