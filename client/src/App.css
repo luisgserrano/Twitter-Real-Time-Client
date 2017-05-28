@@ -98,6 +98,15 @@
     left: 0;
     right: 0; }
 
+.notification-bar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; }
+  .notification-bar.active {
+    display: block; }
+
 .flex-column {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;

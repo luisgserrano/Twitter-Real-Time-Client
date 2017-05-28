@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tweet from './components/Tweet';
+import NotificationBar from './components/NotificationBar';
 import logo from './logo.svg';
 import './App.css';
 
@@ -31,16 +32,16 @@ class App extends Component {
 
 		// On tweet event from server		
 		socket.on('tweet', data => {
-			// Add Tweet to queue
-			console.log(data)
+			// Add Tweet to queue			
 			self.addTweet(data);
 		});
+
 	}
 
 	addTweet(tweet) {
 
 		// Get currente app state
-		const tweets = this.state.tweets;
+		let tweets = this.state.tweets;
 
 		// Increment the unread count
 		let count = this.state.count + 1;
@@ -61,7 +62,7 @@ class App extends Component {
 	showNewTweets() {
 
 		// Get current app state
-		const tweets = this.state.tweets;
+		let tweets = this.state.tweets;
 
 		// Mark the tweets active
 		tweets.forEach(tweet => {
@@ -78,11 +79,6 @@ class App extends Component {
 		let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 		let scrollDistance = document.body.scrollTop;
 		let hasScrolled = (height + scrollDistance) >= document.body.offsetHeight;
-
-		console.log(document.body.offsetHeight);
-		console.log(height);
-		console.log(scrollDistance);
-		console.log(hasScrolled);
 		
 
 		if (hasScrolled && !this.state.paging && !this.state.done) {
@@ -105,7 +101,6 @@ class App extends Component {
 				this.setState({ paging: false, done: true });
 			})
 			.then(data => {
-				console.log(data);
 				this.loadPagedTweets(data);
 			});
 		
@@ -124,7 +119,7 @@ class App extends Component {
 
 			setTimeout(() => {
 				this.setState({ tweets: data, paging: false });
-			}, 1000);
+			}, 400);
 
 		} else {
 			this.setState({ done: true, paging: false });
@@ -144,12 +139,13 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
+			<div id="top" className="App">
 				<div className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
 					<h2>Welcome to React</h2>
 				</div>
 				<div className="App-intro">
+					<NotificationBar count={ this.state.count } onShowNewTweets={ this.showNewTweets.bind(this) } />	
 					<section className="tweet__section">
 						<div className="flex-auto position-rel flex flex-column height-p--100">
 								<div className="column-scroller position-rel scroll-v flex-auto height-p--100 scroll-styled-v">
