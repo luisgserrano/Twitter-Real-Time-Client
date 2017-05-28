@@ -20,9 +20,22 @@
   to {
     transform: rotate(360deg); } }
 
+.show {
+  display: block; }
+
+.hidden {
+  display: none; }
+
 .tweet {
   border-bottom: 1px solid #e1e8ed;
-  background-color: #fff; }
+  background-color: #fff;
+  cursor: pointer; }
+  .tweet__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
   .tweet__section {
     border-radius: 0;
     position: relative;
@@ -43,13 +56,18 @@
     padding-left: 58px;
     line-height: 1.28578em;
     word-break: break-word;
-    word-wrap: break-word; }
+    word-wrap: break-word;
+    text-align: left; }
   .tweet__header {
     display: flex;
     align-items: baseline;
     flex-direction: row; }
   .tweet__body {
     min-height: 35px; }
+  .tweet__media img {
+    width: 100%;
+    max-width: 100%;
+    display: block; }
   .tweet__text {
     white-space: pre-wrap; }
 
@@ -63,7 +81,7 @@
   color: #292f33; }
 
 .account__img {
-  margin-left: 58px;
+  margin-left: -58px;
   width: 48px;
   position: relative;
   float: left;

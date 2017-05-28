@@ -23,9 +23,30 @@
 	to { transform: rotate(360deg); }
 }
 
+
+
+// Helpers
+.show {
+	display: block;
+}
+
+.hidden {
+	display: none;
+}
+
+
 .tweet {
 	border-bottom: 1px solid #e1e8ed;
 	background-color: #fff;
+	cursor: pointer;
+
+	&__link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 
 	&__section {
 		border-radius: 0;
@@ -52,6 +73,7 @@
 		line-height: 1.28578em;
 		word-break: break-word;
 		word-wrap: break-word;
+		text-align: left;
 	}
 
 	&__header {
@@ -62,6 +84,16 @@
 
 	&__body {
 		min-height: 35px;
+	}
+
+	&__media {
+
+		img {
+			width: 100%;
+			max-width: 100%;
+			display: block;
+		}
+
 	}
 
 	&__text {
@@ -83,7 +115,7 @@
 	}
 
 	&__img {
-		margin-left: 58px;
+		margin-left: -58px;
 		width: 48px;
 		position: relative;
 		float: left;
