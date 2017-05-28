@@ -1,24 +1,122 @@
 .App {
-  text-align: center;
-}
+  text-align: center; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+  height: 80px; }
 
 .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white;
-}
+  color: white; }
 
 .App-intro {
-  font-size: large;
-}
+  font-size: large; }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+.tweet {
+  border-bottom: 1px solid #e1e8ed;
+  background-color: #fff; }
+  .tweet__section {
+    border-radius: 0;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    overflow: hidden;
+    width: 310px;
+    height: 100%;
+    margin: 0 6px 0 0;
+    background-color: #fff;
+    font-size: 1rem;
+    white-space: normal;
+    transform: translateZ(0); }
+  .tweet__container {
+    position: relative;
+    padding: 8px 10px; }
+  .tweet__item {
+    padding-left: 58px;
+    line-height: 1.28578em;
+    word-break: break-word;
+    word-wrap: break-word; }
+  .tweet__header {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row; }
+  .tweet__body {
+    min-height: 35px; }
+  .tweet__text {
+    white-space: pre-wrap; }
+
+.account__link {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 1px;
+  min-height: 1px;
+  max-width: 100%;
+  color: #292f33; }
+
+.account__img {
+  margin-left: 58px;
+  width: 48px;
+  position: relative;
+  float: left;
+  margin-right: 10px; }
+  .account__img img {
+    width: 48px;
+    height: 48px;
+    border-radius: 10%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0; }
+
+.flex-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+.flex-auto {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 1px;
+  min-height: 1px; }
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.height-p--100 {
+  height: 100% !important; }
+
+.position-rel {
+  position: relative; }
+
+.column-scroller {
+  overflow-x: hidden;
+  word-break: break-word;
+  word-wrap: break-word; }
+
+.scroll-styled-v, .scroll-styled-h {
+  scrollbar-face-color: #e1e8ed;
+  scrollbar-highlight-color: #e1e8ed;
+  scrollbar-shadow-color: #e1e8ed;
+  scrollbar-darkshadow-color: #e1e8ed;
+  scrollbar-track-color: #F5F8FA;
+  scrollbar-3dlight-color: #e1e8ed;
+  scrollbar-arrow-color: #292f33; }
+
+.scroll-v {
+  overflow-y: auto; }
