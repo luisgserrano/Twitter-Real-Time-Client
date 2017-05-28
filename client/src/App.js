@@ -20,6 +20,8 @@ class App extends Component {
 	componentDidMount() {
 		this.getInitialState();
 		this.socketConnection();
+
+		window.addEventListener('scroll', this.checkWindowScroll.bind(this));
 	}
 
 	socketConnection() {
@@ -67,6 +69,66 @@ class App extends Component {
 		});
 
 		this.setState({ tweets: tweets, count: 0 });
+
+	}
+
+	checkWindowScroll() {
+
+		// Scroll position and window height
+		let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+		let scrollDistance = document.body.scrollTop;
+		let hasScrolled = (height + scrollDistance) >= document.body.offsetHeight;
+
+		console.log(document.body.offsetHeight);
+		console.log(height);
+		console.log(scrollDistance);
+		console.log(hasScrolled);
+		
+
+		if (hasScrolled && !this.state.paging && !this.state.done) {
+
+			// set app state (new page)
+			this.setState({ paging: true, page: this.state.page + 1 });
+
+			// Get the next page of tweets from db
+			this.getPage(this.state.page);
+
+		}
+		
+	}
+
+	getPage(page) {
+
+		fetch('/page/' + page + '/' + this.state.skip, { accept: 'application/json' })
+			.then(response => response.json(), err => {
+				console.log('no more tweets?');
+				this.setState({ paging: false, done: true });
+			})
+			.then(data => {
+				console.log(data);
+				this.loadPagedTweets(data);
+			});
+		
+	}
+
+	loadPagedTweets(tweets) {
+
+		if (tweets.length > 0) {
+
+			// get app state
+			const data = this.state.tweets;
+
+			tweets.forEach(tweet => {
+				data.push(tweet);
+			});
+
+			setTimeout(() => {
+				this.setState({ tweets: data, paging: false });
+			}, 1000);
+
+		} else {
+			this.setState({ done: true, paging: false });
+		}
 
 	}
 
