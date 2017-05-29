@@ -1,0 +1,27 @@
+// variables of the project
+
+// Base variables in SASS
+// Usage:
+// - Use the variables below to control the appearance of the app
+// Author:
+// - Luis Serrano
+
+// Typography
+$title-font-family: 'Roboto', serif;
+
+// Font Sizes
+$base-font-size: 14px;
+
+// Colors
+
+// all colors must be variables
+// Brand Colors
+$brand-primary: #5cabd5;
+$brand-secondary: #7ec1e5;
+$brand-third: #8ad2f8;
+$brand-primary-hover: $brand-secondary;
+$brand-secondary-hover: $brand-third;
+
+$base-text-color: #8796a3;
+$bold-color: #44596b;
+$thin-color: #9ea7af;

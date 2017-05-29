@@ -20,12 +20,6 @@
   to {
     transform: rotate(360deg); } }
 
-.show {
-  display: block; }
-
-.hidden {
-  display: none; }
-
 .tweet {
   border-bottom: 1px solid #e1e8ed;
   background-color: #fff;

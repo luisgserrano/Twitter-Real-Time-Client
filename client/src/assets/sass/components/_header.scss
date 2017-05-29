@@ -1,0 +1,42 @@
+.app {
+
+    &__header {
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
+        
+        background: #fff;        
+        height: 60px;
+        position: fixed;
+        width: 100%;
+
+        display: flex;
+        align-items: center;                
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h3 {
+            margin-top: 5px;
+            padding-left: 15px;
+        }
+    }
+
+    &__logo {
+        height: 40px;
+    }
+
+    &__content {
+        max-width: 590px;
+        margin: 0 auto;
+        padding: 76px 14px 15px;
+    }
+
+}

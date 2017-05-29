@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Tweet from './components/Tweet';
 import NotificationBar from './components/NotificationBar';
-import logo from './logo.svg';
-import './App.css';
+import logo from './assets/images/hole19.png';
+import './assets/sass/app.css';
 
 import io from 'socket.io-client';
 let socket = io('http://localhost:3000');
@@ -139,12 +139,14 @@ class App extends Component {
 
 	render() {
 		return (
-			<div id="top" className="App">
-				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h2>Welcome to React</h2>
+			<div id="top" className="app">
+				<div className="app__header">
+					<div className="container">
+						<img src={logo} className="app__logo" alt="Hole19 Twitter client" />
+						<h2>Hole19 Twitter client</h2>
+					</div>
 				</div>
-				<div className="App-intro">
+				<div className="app__content">
 					<NotificationBar count={ this.state.count } onShowNewTweets={ this.showNewTweets.bind(this) } />	
 					<section className="tweet__section">
 						<div className="flex-auto position-rel flex flex-column height-p--100">
