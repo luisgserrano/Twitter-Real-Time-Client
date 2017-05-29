@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Time from './Time';
 
 class Tweet extends Component {
 
@@ -28,8 +29,8 @@ class Tweet extends Component {
                                 <span className="account__inline">
                                     <b className="account__fullname">{ this.props.info.fullname } </b>
                                     <span className="username txt-mute">@{this.props.info.username}</span>
-                                    <time dateTime={ this.props.info.date } ></time>
-                                </span>
+                                    <Time time={ this.props.info.date } />
+                                </span>                                
                             </a>
                         </header>
                         <div className="tweet__body">
