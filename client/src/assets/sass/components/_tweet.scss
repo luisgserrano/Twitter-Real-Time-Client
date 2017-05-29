@@ -3,6 +3,11 @@
 	border-bottom: 1px solid #e1e8ed;
 	background-color: #fff;
 	cursor: pointer;
+	display: none;
+
+	&.active {
+		display: block;
+	}
 
 	&__link {
 		position: absolute;

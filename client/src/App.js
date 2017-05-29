@@ -53,9 +53,14 @@ class App extends Component {
 		tweets.unshift(tweet);
 		tweets.pop();
 
+		let scrollDistance = document.body.scrollTop;
 
-		// Set app state
-		this.setState({ tweets: tweets, count: count, skip: skip });
+		if (scrollDistance > 400) {
+			// Set app state
+			this.setState({ tweets: tweets, count: count, skip: skip });
+		} else {
+			this.showNewTweets();			
+		}	
 
 	}
 

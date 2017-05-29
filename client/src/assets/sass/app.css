@@ -211,7 +211,10 @@ li {
 .tweet {
   border-bottom: 1px solid #e1e8ed;
   background-color: #fff;
-  cursor: pointer; }
+  cursor: pointer;
+  display: none; }
+  .tweet.active {
+    display: block; }
   .tweet__link {
     position: absolute;
     top: 0;
