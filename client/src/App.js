@@ -84,12 +84,16 @@ class App extends Component {
 		if (hasScrolled && !this.state.paging && !this.state.done) {
 
 			// set app state (new page)
-			this.setState({ paging: true, page: this.state.page + 1, hasScrolled: true });
+			this.setState({ paging: true, page: this.state.page + 1});			
 
 			// Get the next page of tweets from db
 			this.getPage(this.state.page);
 
-		} else {
+		} else if (scrollDistance > 400) {
+			console.log(hasScrolled);
+			this.setState({ hasScrolled: true });
+		}
+		 else {
 			this.setState({ hasScrolled: false });
 		}
 
