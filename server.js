@@ -1,6 +1,7 @@
 // Require all dependencies
 const express       = require('express'),
       http          = require('http'),
+      path          = require('path'),
       mongoose      = require('mongoose'),
       Twit          = require('twit'),
       config        = require('./config'),
@@ -10,6 +11,14 @@ const express       = require('express'),
 // Create an express instance and set a port variable
 const app  = express(),
       port = process.env.PORT || 3005;
+
+
+// app.use(express.static(path.join(__dirname, 'client/dist')));
+
+// app.get('/', (req, res) => {
+//       res.sendFile(__dirname, 'client/dist/index.html');
+// });
+
 
 // Connect to the mongo database
 mongoose.connect(config.mongolab);

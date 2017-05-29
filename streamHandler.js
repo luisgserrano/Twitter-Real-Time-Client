@@ -1,5 +1,4 @@
 const Tweet = require('./Tweet');
-const moment = require('moment');
 
 module.exports = (data, io) => {
     
