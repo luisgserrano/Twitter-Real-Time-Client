@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tweet from './components/Tweet';
 import NotificationBar from './components/NotificationBar';
 import logo from './assets/images/hole19.png';
+import twitterLogo from './assets/images/Twitter_Logo_Blue.png'
 import './assets/sass/app.css';
 
 import io from 'socket.io-client';
@@ -15,25 +16,24 @@ class App extends Component {
 		page: 0,
 		paging: false,
 		skip: 0,
-		done: false
-	}	
+		done: false,
+		hasScrolled: false
+	}
 
 	componentDidMount() {
 		this.getInitialState();
 		this.socketConnection();
 
+		// Event listener for scroll, checking if the user want to see more tweets
 		window.addEventListener('scroll', this.checkWindowScroll.bind(this));
 	}
 
 	socketConnection() {
 
-		// Preserve this reference
-		const self = this;
-
-		// On tweet event from server		
+		// On tweet event from server
 		socket.on('tweet', data => {
-			// Add Tweet to queue			
-			self.addTweet(data);
+			// Add Tweet to queue
+			this.addTweet(data);
 		});
 
 	}
@@ -79,18 +79,20 @@ class App extends Component {
 		let height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 		let scrollDistance = document.body.scrollTop;
 		let hasScrolled = (height + scrollDistance) >= document.body.offsetHeight;
-		
+
 
 		if (hasScrolled && !this.state.paging && !this.state.done) {
 
 			// set app state (new page)
-			this.setState({ paging: true, page: this.state.page + 1 });
+			this.setState({ paging: true, page: this.state.page + 1, hasScrolled: true });
 
 			// Get the next page of tweets from db
 			this.getPage(this.state.page);
 
+		} else {
+			this.setState({ hasScrolled: false });
 		}
-		
+
 	}
 
 	getPage(page) {
@@ -103,7 +105,7 @@ class App extends Component {
 			.then(data => {
 				this.loadPagedTweets(data);
 			});
-		
+
 	}
 
 	loadPagedTweets(tweets) {
@@ -129,7 +131,7 @@ class App extends Component {
 
 	getInitialState() {
 		fetch('/getTweets', { accept: 'application/json' })
-			.then(response => response.json())	
+			.then(response => response.json())
 			.then(data => {
 				this.setState({
 					tweets: data
@@ -142,26 +144,27 @@ class App extends Component {
 			<div id="top" className="app">
 				<div className="app__header">
 					<div className="container">
+						<img src={twitterLogo} className="app__twitter" alt="Twitter" />
 						<img src={logo} className="app__logo" alt="Hole19 Twitter client" />
 						<h2>Hole19 Twitter client</h2>
 					</div>
 				</div>
 				<div className="app__content">
-					<NotificationBar count={ this.state.count } onShowNewTweets={ this.showNewTweets.bind(this) } />	
+					<NotificationBar show={ this.state.hasScrolled } count={ this.state.count } onShowNewTweets={ this.showNewTweets.bind(this) } />
 					<section className="tweet__section">
 						<div className="flex-auto position-rel flex flex-column height-p--100">
 								<div className="column-scroller position-rel scroll-v flex-auto height-p--100 scroll-styled-v">
 									{
 										this.state.tweets.map(tweet => {
 											return (
-												<Tweet key={ tweet.tw_id } info={ tweet } />			
-											);	
+												<Tweet key={ tweet.tw_id } info={ tweet } />
+											);
 										})
 										// console.log(this.state.tweets)
 									}
 								</div>
-							</div>	
-					</section>	
+							</div>
+					</section>
 				</div>
 			</div>
 		);

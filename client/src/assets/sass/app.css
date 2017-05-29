@@ -175,12 +175,17 @@ li {
     display: flex;
     justify-content: center;
     align-items: center; }
-  .app__header h3 {
+  .app__header h2 {
     margin-top: 5px;
     padding-left: 15px; }
 
 .app__logo {
   height: 40px; }
+
+.app__twitter {
+  height: 20px;
+  margin-top: 9px;
+  margin-right: 4px; }
 
 .app__content {
   max-width: 590px;
@@ -277,10 +282,21 @@ li {
     right: 0; }
 
 .notification-bar {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; }
+  width: 100%;
+  padding: 10px;
+  margin-top: 60px;
+  z-index: 9;
+  background-color: #5cabd5;
+  color: white;
+  text-align: center;
+  transition: all .4s ease-in-out; }
   .notification-bar.active {
-    display: block; }
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all; }

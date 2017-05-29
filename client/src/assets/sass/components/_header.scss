@@ -1,42 +1,48 @@
 .app {
 
-    &__header {
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1000;
-        
-        background: #fff;        
-        height: 60px;
-        position: fixed;
-        width: 100%;
+	&__header {
+		border-bottom: 1px solid rgba(0,0,0,0.05);
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 1000;
 
-        display: flex;
-        align-items: center;                
+		background: #fff;
+		height: 60px;
+		position: fixed;
+		width: 100%;
 
-        .container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+		display: flex;
+		align-items: center;
 
-        h3 {
-            margin-top: 5px;
-            padding-left: 15px;
-        }
-    }
+		.container {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 
-    &__logo {
-        height: 40px;
-    }
+		h2 {
+			margin-top: 5px;
+			padding-left: 15px;
+		}
+	}
 
-    &__content {
-        max-width: 590px;
-        margin: 0 auto;
-        padding: 76px 14px 15px;
-    }
+	&__logo {
+		height: 40px;
+	}
+
+	&__twitter {
+		height: 20px;
+		margin-top: 9px;
+    	margin-right: 4px;
+	}
+
+	&__content {
+		max-width: 590px;
+		margin: 0 auto;
+		padding: 76px 14px 15px;
+	}
 
 }
