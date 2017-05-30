@@ -29,7 +29,8 @@ module.exports = (data, io) => {
 
     function changeDate(date) {
         let newDate = new Date(date);
-        return newDate.setTime( newDate.getTime() - new Date().getTimezoneOffset()*60*1000 );
+        console.log(new Date().getTimezoneOffset());
+        return newDate.setTime( newDate.getTime() - new Date().getTimezoneOffset() * 60 * 1000 );
     }
 
     function checkTweetMedia(media) {
