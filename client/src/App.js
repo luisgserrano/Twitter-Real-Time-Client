@@ -166,7 +166,7 @@ class App extends Component {
 				<div className="app__content">
 					<NotificationBar show={ this.state.hasScrolled } count={ this.state.count } onShowNewTweets={ this.showNewTweets.bind(this) } />
 					<section className="tweet__section">
-						<div className="flex-auto position-rel flex flex-column height-p--100">
+						<div className="flex-auto position-rel height-p--100">
 								<div className="column-scroller position-rel scroll-v flex-auto height-p--100 scroll-styled-v">
 									{
 										this.state.tweets.map(tweet => {
