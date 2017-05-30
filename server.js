@@ -13,15 +13,15 @@ const app  = express(),
       port = process.env.PORT || 3005;
 
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client/dist')));
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(path.join(__dirname, 'client/dist')));
+// }
 
-// app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
-// app.get('/', (req, res) => {
-//       res.sendFile(__dirname, 'client/dist/index.html');
-// });
+app.get('/', (req, res) => {
+      res.sendFile(__dirname, 'client/dist/index.html');
+});
 
 
 // Connect to the mongo database
