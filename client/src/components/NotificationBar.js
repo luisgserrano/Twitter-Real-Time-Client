@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 class NotificationBar extends Component {
 
@@ -12,7 +13,7 @@ class NotificationBar extends Component {
         return (
             <div className={'notification-bar' + (this.props.show && this.props.count > 0 ? ' active' : '')}>
                 <p>There are {this.props.count} new tweets! <a href="#top" onClick={this.props.onShowNewTweets}>Click here to see them.</a></p>
-            </div>    
+            </div>
         );
     }
 

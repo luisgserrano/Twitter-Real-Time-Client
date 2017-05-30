@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import Time from './Time';
 
 class Tweet extends Component {
@@ -24,18 +25,17 @@ class Tweet extends Component {
                         <header className="tweet__header">
                             <a href={'https://twitter.com/' + this.props.info.username} className="account__link">
                                 <div className="account__img">
-                                    <img src={this.props.info.avatar} alt={ this.props.info.fullname } />	
-                                </div>	
+                                    <img src={this.props.info.avatar} alt={ this.props.info.fullname } />
+                                </div>
                                 <span className="account__inline">
                                     <b className="account__fullname">{ this.props.info.fullname } </b>
                                     <span className="account__username">@{this.props.info.username}</span>
                                     <Time time={ this.props.info.date } />
-                                </span>                                
+                                </span>
                             </a>
                         </header>
                         <div className="tweet__body">
                             <p className="tweet__text">{this.props.info.message}</p>
-                            
                             <div className={ 'tweet__media ' + (this.state.hasMedia ? 'show' : 'hidden') }>
                                 <img src={ this.props.info.media_url } alt=""/>
                             </div>

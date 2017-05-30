@@ -7,7 +7,12 @@ import twitterLogo from './assets/images/Twitter_Logo_Blue.png'
 import './assets/sass/app.css';
 
 import io from 'socket.io-client';
-let socket = io();
+
+// On Production
+//let socket = io();
+
+// On Development
+let socket = io('http://localhost:3000');
 
 class App extends Component {
 
@@ -29,6 +34,9 @@ class App extends Component {
 		window.addEventListener('scroll', this.checkWindowScroll.bind(this));
 	}
 
+	/**
+	 * Websocket event looking for new tweets from server
+	 */
 	socketConnection() {
 
 		// On tweet event from server
@@ -39,6 +47,12 @@ class App extends Component {
 
 	}
 
+	/**
+	 * Function to add a new tweet.
+	 * The unread count and skip are incremented.
+	 * If the state has less than 20 tweets, no tweets will be removed from the list.
+	 * If the user scroll, no tweets will be shown. If not, the new tweets will popup in real-time calling showNewTweets()
+	 */
 	addTweet(tweet) {
 
 		// Get currente app state
@@ -52,23 +66,26 @@ class App extends Component {
 
 		// Add Tweet to the beginning of the array
 		tweets.unshift(tweet);
-		
+
 		if (tweets.length >= 20) {
 			// remove the last of the column to prevent to grow a lot
 			tweets.pop();
 		}
 
 		let scrollDistance = document.body.scrollTop;
-
 		if (scrollDistance > 400) {
 			// Set app state
 			this.setState({ tweets: tweets, count: count, skip: skip });
 		} else {
-			this.showNewTweets();			
-		}	
+			this.showNewTweets();
+		}
 
 	}
 
+	/**
+	 * For each tweet in state, active = true will make him popup in the page using css classes.
+	 * After that, new new state is set and the unread count is reseted.
+	 */
 	showNewTweets() {
 
 		// Get current app state
@@ -83,6 +100,10 @@ class App extends Component {
 
 	}
 
+	/**
+	 * Event handler onScroll to check if the user has scrolled to the very
+	 * bottom of the page to show older tweets.
+	 */
 	checkWindowScroll() {
 
 		// Scroll position and window height
@@ -90,11 +111,10 @@ class App extends Component {
 		let scrollDistance = document.body.scrollTop;
 		let hasScrolled = (height + scrollDistance) >= document.body.offsetHeight;
 
-
 		if (hasScrolled && !this.state.paging && !this.state.done) {
 
 			// set app state (new page)
-			this.setState({ paging: true, page: this.state.page + 1});			
+			this.setState({ paging: true, page: this.state.page + 1});
 
 			// Get the next page of tweets from db
 			this.getPage(this.state.page);
@@ -109,6 +129,9 @@ class App extends Component {
 
 	}
 
+	/**
+	 * Function to get the next page of tweets (older) using fetch.
+	 */
 	getPage(page) {
 
 		fetch('/page/' + page + '/' + this.state.skip, { accept: 'application/json' })
@@ -122,6 +145,10 @@ class App extends Component {
 
 	}
 
+	/**
+	 * if tweets are returned in json, this function will show them on the page,
+	 * pushing the new tweets in the state.
+	 */
 	loadPagedTweets(tweets) {
 
 		if (tweets.length > 0) {
@@ -132,7 +159,7 @@ class App extends Component {
 			tweets.forEach(tweet => {
 				data.push(tweet);
 			});
-			
+
 			setTimeout(() => {
 				this.setState({ tweets: data, paging: false });
 			}, 200);
@@ -143,6 +170,9 @@ class App extends Component {
 
 	}
 
+	/**
+	 * Request to get the 20 most recent tweets
+	 */
 	getInitialState() {
 		fetch('/getTweets', { accept: 'application/json' })
 			.then(response => response.json())

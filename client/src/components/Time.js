@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { prettyDate } from '../helpers/prettyDate';
 
 class Time extends Component {
@@ -12,7 +13,7 @@ class Time extends Component {
         interval: ''
     }
 
-    componentDidMount() {    
+    componentDidMount() {
         this.convertTime();
 
         let intervalId = setInterval(this.convertTime.bind(this), 5000);
@@ -27,7 +28,7 @@ class Time extends Component {
     convertTime()  {
         let date = prettyDate(this.props.time);
         this.setState({timeConverted: date});
-    }    
+    }
 
     render() {
         return (

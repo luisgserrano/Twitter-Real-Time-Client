@@ -4,9 +4,14 @@
 	background-color: #fff;
 	cursor: pointer;
 	display: none;
+	visibility: hidden;
+	opacity: 0;
+	transition: all .4s ease-in-out;
 
 	&.active {
 		display: block;
+		visibility: visible;
+		opacity: 1;
 	}
 
 	&__link {
@@ -24,7 +29,7 @@
 		display: inline-block;
 		overflow: hidden;
 		// width: 310px;
-		height: 100%;		
+		height: 100%;
 		background-color: #fff;
 		font-size: 1rem;
 		white-space: normal;

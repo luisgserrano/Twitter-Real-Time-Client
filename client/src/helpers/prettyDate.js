@@ -7,13 +7,14 @@
 // Takes an ISO time and returns a string representing how
 // long ago the date represents.
 export function prettyDate(time) {
+	// eslint-disable-next-line
 	var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
 		diff = ( ( ( new Date() ).getTime() - date.getTime() ) / 1000),
 		day_diff = Math.floor(diff / 86400);
-			
+
 	if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
 		return;
-			
+
 	return day_diff == 0 && (
 			diff < 60 && "just now" ||
 			diff < 120 && "1 minute ago" ||
