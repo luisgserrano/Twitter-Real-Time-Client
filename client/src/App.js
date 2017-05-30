@@ -1,3 +1,4 @@
+import 'whatwg-fetch';
 import React, { Component } from 'react';
 import Tweet from './components/Tweet';
 import NotificationBar from './components/NotificationBar';
@@ -51,7 +52,11 @@ class App extends Component {
 
 		// Add Tweet to the beginning of the array
 		tweets.unshift(tweet);
-		tweets.pop();
+		
+		if (tweets.length >= 20) {
+			// remove the last of the column to prevent to grow a lot
+			tweets.pop();
+		}
 
 		let scrollDistance = document.body.scrollTop;
 
@@ -95,11 +100,11 @@ class App extends Component {
 			this.getPage(this.state.page);
 
 		} else if (scrollDistance > 400) {
-			console.log(hasScrolled);
 			this.setState({ hasScrolled: true });
 		}
 		 else {
 			this.setState({ hasScrolled: false });
+			this.showNewTweets();
 		}
 
 	}
@@ -108,7 +113,7 @@ class App extends Component {
 
 		fetch('/page/' + page + '/' + this.state.skip, { accept: 'application/json' })
 			.then(response => response.json(), err => {
-				console.log('no more tweets?');
+				// no more tweets
 				this.setState({ paging: false, done: true });
 			})
 			.then(data => {
@@ -127,10 +132,10 @@ class App extends Component {
 			tweets.forEach(tweet => {
 				data.push(tweet);
 			});
-
+			
 			setTimeout(() => {
 				this.setState({ tweets: data, paging: false });
-			}, 400);
+			}, 200);
 
 		} else {
 			this.setState({ done: true, paging: false });

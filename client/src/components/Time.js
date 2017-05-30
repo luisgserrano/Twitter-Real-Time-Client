@@ -8,15 +8,24 @@ class Time extends Component {
     }
 
     state = {
-        timeConverted: ''
+        timeConverted: '',
+        interval: ''
     }
 
-    componentDidMount() {                
-        setInterval(this.convertTime(), 5000);            
+    componentDidMount() {    
+        this.convertTime();
+
+        let intervalId = setInterval(this.convertTime.bind(this), 5000);
+
+        this.setState({ interval: intervalId });
     }
 
-    convertTime() {
-        let date = prettyDate(this.props.time);        
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
+    }
+
+    convertTime()  {
+        let date = prettyDate(this.props.time);
         this.setState({timeConverted: date});
     }    
 

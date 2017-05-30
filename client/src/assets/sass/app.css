@@ -256,6 +256,18 @@ li {
       display: block; }
   .tweet__text {
     white-space: pre-wrap; }
+  .tweet time {
+    color: #9ea7af;
+    margin-left: auto; }
+
+.account__username {
+  color: #9ea7af;
+  margin-left: 5px; }
+
+.account__inline {
+  position: relative;
+  display: flex;
+  width: 100%; }
 
 .account__link {
   -webkit-box-flex: 1;
@@ -264,7 +276,11 @@ li {
   min-width: 1px;
   min-height: 1px;
   max-width: 100%;
-  color: #292f33; }
+  color: #292f33;
+  text-decoration: none; }
+  .account__link:hover .account__fullname {
+    color: #5cabd5;
+    text-decoration: underline; }
 
 .account__img {
   margin-left: -58px;
@@ -275,7 +291,7 @@ li {
   .account__img img {
     width: 48px;
     height: 48px;
-    border-radius: 10%;
+    border-radius: 50%;
     margin-top: 2px;
     margin-bottom: 2px;
     z-index: 1;

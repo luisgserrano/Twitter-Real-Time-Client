@@ -28,7 +28,7 @@ class Tweet extends Component {
                                 </div>	
                                 <span className="account__inline">
                                     <b className="account__fullname">{ this.props.info.fullname } </b>
-                                    <span className="username txt-mute">@{this.props.info.username}</span>
+                                    <span className="account__username">@{this.props.info.username}</span>
                                     <Time time={ this.props.info.date } />
                                 </span>                                
                             </a>

@@ -48,5 +48,4 @@ const request = T.stream('statuses/filter', { track: '#hole19golf, #golf' });
 // Set a stream listener for tweets matching tacking keywords
 request.on('tweet', tweet => {
       streamHandler(tweet, io)
-      console.log(tweet)
 });
