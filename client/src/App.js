@@ -7,7 +7,7 @@ import twitterLogo from './assets/images/Twitter_Logo_Blue.png'
 import './assets/sass/app.css';
 
 import io from 'socket.io-client';
-let socket = io('http://localhost:3000');
+let socket = io();
 
 class App extends Component {
 
