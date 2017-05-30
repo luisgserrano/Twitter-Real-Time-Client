@@ -13,6 +13,10 @@ const app  = express(),
       port = process.env.PORT || 3005;
 
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'client/dist')));
+}
+
 // app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // app.get('/', (req, res) => {
