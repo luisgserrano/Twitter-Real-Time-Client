@@ -9,10 +9,10 @@ import './assets/sass/app.css';
 import io from 'socket.io-client';
 
 // On Production
-//let socket = io();
+let socket = io();
 
 // On Development
-let socket = io('http://localhost:3000');
+// let socket = io('http://localhost:3000');
 
 class App extends Component {
 
