@@ -12,6 +12,9 @@ class Tweet extends Component {
         hasMedia: this.props.info.media_url === '' ? false : true
     }
 
+    /**
+     * click handler for each tweet, setting a custom link, based on tweet props.
+     */
     goToTweet = () => {
         window.location.href = 'https://twitter.com/' + this.props.info.username + '/status/' + this.props.info.tw_id;
     }

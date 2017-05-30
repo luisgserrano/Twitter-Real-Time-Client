@@ -1,5 +1,6 @@
 const config = {};
 
+// This shouldnt be added to git at the first time for security reasons...
 config.twitter = {
     consumer_key: "bDFo7BXOHOTl7HuGnjVF4Mfpa",
     consumer_secret: "ECWDlKZwScSAYzDVzaPvWJNAiUKNb2Nk9YNy9SCEXO7yKbz3P5",

@@ -27,11 +27,19 @@ module.exports = (data, io) => {
         }
     });
 
+    /**
+     * The date received is converted to a JS date object, to convert to the PT timezone.
+     * @param {*} date - date from the database
+     */
     function changeDate(date) {
         let newDate = new Date(date);        
         return newDate.setTime( newDate.getTime() - (new Date().getTimezoneOffset() - 60) * 60 * 1000 );
     }
 
+    /**
+     * Check wether the user upload images or not checking if the media object is not undefined.
+     * @param {*} media - media object from the database containing information about the tweet images
+     */
     function checkTweetMedia(media) {
 
         if (typeof media !== 'undefined') {            
