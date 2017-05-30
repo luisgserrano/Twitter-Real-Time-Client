@@ -212,9 +212,14 @@ li {
   border-bottom: 1px solid #e1e8ed;
   background-color: #fff;
   cursor: pointer;
-  display: none; }
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .4s ease-in-out; }
   .tweet.active {
-    display: block; }
+    display: block;
+    visibility: visible;
+    opacity: 1; }
   .tweet__link {
     position: absolute;
     top: 0;
@@ -319,3 +324,5 @@ li {
     visibility: visible;
     opacity: 1;
     pointer-events: all; }
+  .notification-bar a {
+    color: white; }
