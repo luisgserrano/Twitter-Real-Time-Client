@@ -13,7 +13,7 @@ const app  = express(),
       port = process.env.PORT || 3005;
 
 
-app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use(express.static(path.resolve(__dirname, 'client/build')));
 
 
 // Connect to the mongo database
@@ -29,6 +29,11 @@ app.get('/getTweets', routes.index);
 
 // Page route
 app.get('/page/:page/:skip', routes.page);
+
+// All remaining requests return the React app, so it can handle routing.
+// app.get('*', (request, response) => {
+//   response.sendFile(path.resolve(__dirname, 'react-ui/build', 'index.html'));
+// });
 
 
 // Set socket.io to listen on server
